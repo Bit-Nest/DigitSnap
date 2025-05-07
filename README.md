@@ -30,7 +30,7 @@ These dependencies are listed in `requirements.txt` and can be installed using `
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/Ketan-Chaudhary/DigitSnap.git
+git clone https://github.com/Bit-Nest/DigitSnap.git
 ```
 
 ## Future Work
