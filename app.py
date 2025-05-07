@@ -107,5 +107,26 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/api/predict', methods=['POST'])
+def api_predict():
+    if 'file' not in request.files:
+        return {"error": "No file provided"}, 400
+
+    file = request.files['file']
+
+    try:
+        image = Image.open(io.BytesIO(file.read()))
+        image = np.array(image)
+
+        contours, thresh = preprocess_image(image)
+        prediction = recognize_digits_from_contours(image, contours)
+
+        return {"prediction": prediction}, 200
+
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5100)
